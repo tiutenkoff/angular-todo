@@ -13,23 +13,28 @@ export interface Todo {
 @Injectable({providedIn: 'root'})
 
 export class TodosService {
-    public todos: Todo[] = [];
+  public todos: Todo[] = [];
+  private seacrhString: string = '';
 
-    constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) {}
 
-    fetchTodos(): Observable<Todo[]> {
-      return this.http.get<Todo[]>('https://jsonplaceholder.typicode.com/todos?_limit=3')
-        .pipe(
-          tap(todos => this.todos = todos)
-        )
-    }
+  fetchTodos(): Observable<Todo[]> {
+    return this.http.get<Todo[]>('https://jsonplaceholder.typicode.com/todos?_limit=5')
+      .pipe(
+        tap(todos => this.todos = todos)
+      )
+  }
 
-    onToggle(id: number){
-      const idx = this.todos.findIndex(t => t.id === id);
-      this.todos[idx].completed = !this.todos[idx].completed;
-    }
-    
-    removeTodo(id: number){
-      this.todos = this.todos.filter(todo => todo.id !== id);
-    }
+  onToggle(id: number){
+    const idx = this.todos.findIndex(t => t.id === id);
+    this.todos[idx].completed = !this.todos[idx].completed;
+  }
+  
+  removeTodo(id: number){
+    this.todos = this.todos.filter(todo => todo.id !== id);
+  }
+
+  addTodo(todo: Todo) {
+    this.todos.push(todo);
+  }
 }

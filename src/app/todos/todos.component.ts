@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Todo, TodosService } from '../shared/todos.servise';
+import { delay } from 'rxjs/operators';
+import { TodosService } from '../shared/todos.servise';
 
 @Component({
   selector: 'app-todos',
@@ -9,6 +10,7 @@ import { Todo, TodosService } from '../shared/todos.servise';
 export class TodosComponent implements OnInit {
 
   public loading: boolean = true;
+  public seacrhString: string = '';
   constructor(public todosService: TodosService) { }
 
   onChange(id: number){
@@ -20,9 +22,11 @@ export class TodosComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.todosService.fetchTodos().subscribe(() => {
-      this.loading = false;
-    });
+    this.todosService.fetchTodos()
+      .pipe(delay(500))
+      .subscribe(() => {
+        this.loading = false;
+      });
   }
 
 }
