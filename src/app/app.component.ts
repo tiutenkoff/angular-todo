@@ -9,5 +9,3 @@ export class AppComponent {
   appTitle: string = 'Angular todo app';
 }
   
-// timecode: 38:40
-

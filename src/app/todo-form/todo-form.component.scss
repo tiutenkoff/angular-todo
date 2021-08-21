@@ -10,21 +10,25 @@ div {
       flex-basis: 80%;
       height: 100%;
       border: 1px solid #ccc;
-      border-radius: 5px;
+      border-radius: 10px 0 0 10px;
       outline: none;
-      padding: 0 .5rem;
+      padding: 4px .5rem;
     }
   
     button {
       $color: #eee;
       flex-basis: 20%;
-      height: 100%;
-      border: 1px solid #ccc;
-      border-radius: 5px;
+      font-family: inherit;
+      font-size: 1.2rem;
+      border: none;
+      border-radius: 0 10px 10px 0;
       outline: none;
-      background: $color;
+      color: #fff;
       transition: .3s all;
       cursor: pointer;
+      text-transform: uppercase;
+      background: rgb(40, 87, 197);
+      padding: 8px 0px;
   
       &:hover {
         background: darken($color, 20%);
